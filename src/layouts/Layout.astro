@@ -1,22 +1,66 @@
+---
+import '@fontsource/josefin-sans/400.css';
+import '@fontsource/josefin-sans/700.css';
+import '../styles/global.css';
+import Navigation from '../components/Navigation.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title = "Marine Lenoir", description = "Développeuse Front-end spécialisée A11y" } = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title} - {description}</title>
 	</head>
 	<body>
-		<slot />
+		<a href="#main-content" class="sr-only-focusable">Aller au contenu</a>
+
+		<header>
+			<Navigation />
+		</header>
+
+		<main id="main-content">
+			<slot />
+		</main>
+
+		<footer>
+			<p>© {new Date().getFullYear()} - Portfolio Accessibilité</p>
+		</footer>
 	</body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
+<style is:global>
+	.sr-only-focusable {
+		position: absolute;
+		width: 0.063rem;
+		height: 0.063rem;
+		padding: 0;
+		margin: -0.063rem;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0 !important;
+	}
+
+	.sr-only-focusable:focus {
+		position: static;
+		display: block;
+		text-align: center;
+		background: var(--primary);
+		color: var(--text-button);
+		padding: 0.625rem 0;
 		width: 100%;
-		height: 100%;
+		text-decoration: none;
+		clip: auto;
+		height: auto;
 	}
 </style>

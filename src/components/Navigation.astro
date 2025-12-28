@@ -1,0 +1,229 @@
+---
+const { pathname } = Astro.url;
+
+const currentPath = pathname.replace(/\/$/, "");
+
+const navItems = [
+  { href: '/', label: 'Accueil' },
+  { href: '/projets', label: 'Projets' },
+  { href: '/a-propos', label: 'À propos' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<nav aria-label="Navigation principale">
+	<a href="/" aria-label="Aller sur la page d'accueil">
+		<img class="logo" src="/logo-small-format.png" alt="" />
+	</a>
+  <button class="menu-mobile" aria-expanded="false" aria-controls="main-navigation" aria-label="Ouvrir le menu de navigation">
+    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50px" height="50px" viewBox="0 0 24 24" version="1.1">
+      <g id="Page-1" stroke="none" stroke-width="1" fill="#F9F9F7" fill-rule="evenodd">
+          <g id="Menu">
+              <rect id="Rectangle" fill-rule="nonzero" x="0" y="0" width="24" height="24"></rect>
+              <line x1="5" y1="7" x2="19" y2="7" id="Path" stroke="#0C0310" stroke-width="2" stroke-linecap="round"></line>
+              <line x1="5" y1="17" x2="19" y2="17" id="Path" stroke="#0C0310" stroke-width="2" stroke-linecap="round"></line>
+              <line x1="5" y1="12" x2="19" y2="12" id="Path" stroke="#0C0310" stroke-width="2" stroke-linecap="round"></line>
+          </g>
+      </g>
+    </svg>
+  </button>
+  <div id="main-navigation" class="menu-overlay">
+    <button class="close-menu-mobile" aria-label="Fermer le menu de navigation" aria-controls="close-menu-nav-list">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24" fill="none">
+        <path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z" fill="#0F0F0F"/>
+      </svg>
+    </button>
+    <ul id="menu-nav-list">
+    {navItems.map((item) => {
+      const isActive = item.href === currentPath || (item.href === '/' && currentPath === '');
+      return (
+        <li>
+          <a 
+            href={item.href} 
+            class:list={["menu-items", { active: isActive }]}
+            aria-current={isActive ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        </li>
+      );
+    })}
+    </ul>
+  </div>
+</nav>
+
+<style>
+
+  .no-scroll {
+    overflow: hidden;
+  }
+
+  nav {
+    padding: var(--space-s) var(--space-m);
+    background-color: var(--bg-color);
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem 0 1rem;
+  }
+
+  @media (min-width: 64rem) {
+    nav {
+      padding: 1rem 3rem 0 1rem;
+    }
+  }
+
+  .logo {
+    width: 6.813rem;
+    height: auto;
+    padding-top: 0.625rem;
+  }
+
+  @media (min-width: 64rem) {
+    .logo {
+      width: 8.813rem;
+    }
+  }
+
+   @media (min-width: 64rem) {
+    .menu-mobile {
+      display: none;
+    }
+  }
+
+  .menu-overlay {
+    display: none;
+  }
+
+  .menu-overlay.open {
+    display: block;
+  }
+
+  .close-menu-mobile {
+    display: none;
+  }
+
+  @media (min-width: 64rem) {
+    .menu-overlay {
+      display: block;
+    }
+
+    .close-menu-mobile {
+      display: none;
+    }
+  }
+
+  ul {
+    display: none;
+  }
+
+  ul.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70vh;
+    background-color: var(--bg-color);
+    z-index: 100; 
+    gap: 3rem;
+  }
+
+  @media (min-width: 64rem) {
+    ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    li {
+      padding-right: 3rem;
+    }
+  }
+  
+  a.menu-items {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  a.menu-items:hover, a.menu-items.active {
+    color: var(--primary);
+    text-decoration: none;
+    position: relative;
+  }
+
+  a.menu-items:hover::after, a.menu-items.active::after {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--separator);
+    border-radius: 4px;
+    transition: width 0.2s;
+    position: absolute;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .menu-overlay.open {
+    .close-menu-mobile {
+      display: block;
+      position: absolute;
+      top: 0;
+      z-index: 101;
+      padding: 2rem;
+    }
+  }
+
+</style>
+
+<script>
+
+  function setupNavigation() {
+    const btn = document.querySelector('.menu-mobile');
+    const menu = document.querySelector('#menu-nav-list');
+    const overlay = document.querySelector('.menu-overlay');
+    const closeBtn = document.querySelector('.close-menu-mobile');
+    if (!btn || !menu || !overlay) return;
+
+    const closeMenu = () => {
+      btn.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('active');
+      overlay.classList.remove('open');
+      document.body.classList.remove('no-scroll');
+    };
+
+    btn.addEventListener('click', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isExpanded));
+      menu.classList.toggle('active');
+      document.body.classList.toggle('no-scroll');
+      overlay.classList.add('open');
+    });
+
+    const navLinks = menu.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
+
+    closeBtn?.addEventListener('click', () => {
+      closeMenu();
+    });
+  }
+
+  setupNavigation();
+  document.addEventListener('astro:after-swap', setupNavigation);
+</script>
