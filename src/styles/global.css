@@ -1,0 +1,98 @@
+:root {
+  --primary: #2D3132;
+  --bg-color: #F9F9F7;
+  --text-main: #595E60;
+  --text-button: #FFFFFF;
+  --separator: #595E60;
+  --list-title-primary:#707070;
+  --list-title-secondary: #6C7368; 
+  
+  --font-main: 'Josefin Sans', sans-serif;
+
+  --shadow-soft: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+  --focus-ring: 3px solid var(--primary);
+  --focus-offset: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a:focus-visible, 
+button:focus-visible, 
+input:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-radius: 4px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+p {
+  font-family: var(--font-main);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+p.bold {
+  font-weight: 700;
+}
+
+h1 {
+  font-family: var(--font-main);
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+
+h1.light {
+  font-family: var(--font-main);
+  font-size: 1.563rem;
+  font-weight: 400;
+}
+
+h2 {
+  font-family: var(--font-main);
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+button {
+  font-family: var(--font-main);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-button);
+  background-color: var(--bg-color);
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--text-button);
+  color: var(--primary);
+}
+
+li {
+  font-family: var(--font-main);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  list-style: none;
+}
+
+li:last-child {
+  padding-right: 0;
+}
