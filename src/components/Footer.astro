@@ -1,0 +1,140 @@
+---
+const currentYear = new Date().getFullYear();
+
+const { pathname } = Astro.url;
+
+const currentPath = pathname.replace(/\/$/, "");
+
+const navItems = [
+  { href: '/', label: 'Accueil' },
+  { href: '/projets', label: 'Projets' },
+  { href: '/a-propos', label: 'À propos' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+<div class="footer-container">
+    <div class="footer-socials">
+        <a href="https://github.com/MarineLenoir92" aria-label="Accéder à mon compte Github (nouvelle fenêtre)" target="_blank" rel="noopener noreferrer">
+         <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="49px" height="49px" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                <path d="M2247 4995 c-1043 -126 -1913 -881 -2167 -1880 -59 -234 -74 -356 -74 -610 -1 -129 5 -259 13 -315 108 -783 536 -1431 1212 -1841 206 -124 479 -239 570 -239 45 0 55 4 85 34 22 22 34 44 35 63 2 40 -3 448 -4 449 -1 1 -42 -5 -92 -13 -108 -17 -273 -12 -360 12 -115 30 -202 79 -279 158 -64 63 -81 90 -144 217 -83 169 -138 244 -230 308 -142 100 -165 144 -87 171 31 10 54 11 103 3 136 -22 259 -109 355 -251 120 -178 219 -247 389 -271 78 -11 185 1 285 31 71 22 71 22 98 131 18 70 67 163 111 209 l25 26 -63 7 c-103 12 -293 55 -386 88 -168 59 -276 123 -395 237 -222 212 -326 520 -314 931 4 141 9 178 31 255 36 121 88 223 164 323 48 64 60 86 53 100 -21 40 -41 168 -41 261 0 107 18 219 50 317 25 73 38 78 145 63 136 -19 330 -99 506 -209 71 -45 80 -48 111 -39 84 24 309 59 450 69 228 17 538 -10 737 -64 l54 -15 91 56 c175 108 358 183 495 203 108 15 117 10 145 -79 13 -42 29 -111 36 -154 17 -103 8 -293 -17 -372 l-19 -60 46 -56 c150 -187 212 -376 211 -645 -1 -671 -304 -1054 -930 -1179 -64 -12 -142 -26 -174 -30 l-58 -7 35 -38 c43 -48 88 -135 112 -216 15 -51 18 -122 23 -504 5 -334 9 -451 19 -467 17 -31 63 -53 108 -53 93 0 453 163 659 297 165 109 299 219 435 359 385 395 615 869 691 1424 20 144 17 507 -5 655 -172 1140 -1081 2015 -2234 2150 -154 18 -464 18 -615 0z"/>
+            </g>
+            </svg>
+        </a>
+        <a href="mailto:marine.lenoirbaniel@gmail.com" aria-label="M'envoyer un mail (nouvelle fenêtre)" target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="49px" height="49px" viewBox="0 0 50.000000 50.000000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                    <path d="M167 486 c-55 -21 -103 -61 -134 -114 -24 -40 -28 -58 -28 -123 0 -67 4 -81 30 -125 99 -159 326 -164 425 -8 101 160 -4 368 -192 380 -39 3 -77 -1 -101 -10z m163 -201 c-35 -36 -71 -65 -80 -65 -9 0 -45 29 -80 65 l-64 65 144 0 144 0 -64 -65z m-185 5 l39 -40 -47 -48 -47 -47 0 88 c0 48 4 87 8 87 4 0 26 -18 47 -40z m265 -47 l0 -88 -47 47 -47 48 39 40 c21 22 43 40 47 40 4 0 8 -39 8 -87z m-190 -28 c16 -20 39 -19 62 2 18 16 21 15 61 -25 l42 -42 -135 0 -134 0 39 40 c44 45 47 46 65 25z"/>
+                </g>
+            </svg>
+        </a>
+        <a href="http://www.linkedin.com/in/marine-lenoir" aria-label="Accéder à mon profil LinkedIn (nouvelle fenêtre)" target="_blank" rel="noopener noreferrer">
+        <img class="logo" src="/logo-linkedin.webp" alt="" />
+        </a>
+    </div>
+    <nav class="footer-nav" aria-label="Navigation de pied de page">
+      <ul>
+        {navItems.map((item) => {
+            const isActive = item.href === currentPath || (item.href === '/' && currentPath === '');
+            return (
+                <li>
+                    <a 
+                        href={item.href} 
+                        class:list={["footer-menu-items", { active: isActive }]}
+                        aria-current={isActive ? "page" : undefined}
+                    >
+                        {item.label}
+                    </a>
+                </li>
+            );
+        })}
+      </ul>
+    </nav>
+</div>
+
+<p class="copyright">© {currentYear} - Portfolio Accessibilité</p>   
+
+
+<style>
+    .footer-container {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    @media (min-width: 64rem) {
+        .footer-container {
+            flex-direction: row;
+            gap: 0;
+        }
+    }
+
+    .footer-socials {
+        display: flex;
+        gap: 2.5rem;
+    }
+
+    ul {
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    @media (min-width: 64rem) {
+        ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+        }
+    }
+
+    li {
+        margin-bottom: 1rem;
+    }
+
+    @media (min-width: 64rem) {
+        li {
+            margin-bottom: 0;
+        }
+    }
+
+    a.footer-menu-items {
+        text-decoration: none;
+        color: var(--text-main);
+        font-weight: 500;
+        transition: color 0.2s ease;
+    }
+
+    a.footer-menu-items:hover, a.footer-menu-items.active {
+        color: var(--primary);
+        text-decoration: none;
+        position: relative;
+    }
+
+    a.footer-menu-items:hover::after, a.footer-menu-items.active::after {
+        content: "";
+        display: block;
+        height: 3px;
+        width: 100%;
+        background-color: var(--separator);
+        border-radius: 4px;
+        transition: width 0.2s;
+        position: relative;
+        box-shadow: var(--shadow-soft);
+    }
+
+     @media (min-width: 64rem) {
+        a.footer-menu-items:hover::after, a.footer-menu-items.active::after {
+            position: absolute;
+        }
+    }
+
+    .copyright {
+        margin-top: 2rem;
+    }
+</style>
