@@ -4,6 +4,9 @@ import '@fontsource/josefin-sans/700.css';
 import '../styles/global.css';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import Hero from '../components/HomePage/Hero.astro';
+import Presentation from '../components/HomePage/Presentation.astro';
+import BentoGrid from '../components/HomePage/BentoGrid.astro';
 
 interface Props {
 	title: string;
@@ -11,6 +14,13 @@ interface Props {
 }
 
 const { title = "Marine Lenoir", description = "Développeuse Front-end spécialisée A11y" } = Astro.props;
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Marine Lenoir",
+  "jobTitle": "Développeuse Web"
+};
 ---
 
 <!doctype html>
@@ -21,6 +31,7 @@ const { title = "Marine Lenoir", description = "Développeuse Front-end spécial
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{title} - {description}</title>
+		<script type="application/ld+json" set:html={JSON.stringify(personSchema)} slot="head" />
 	</head>
 	<body>
 		<a href="#main-content" class="sr-only-focusable">Aller au contenu</a>
@@ -30,6 +41,9 @@ const { title = "Marine Lenoir", description = "Développeuse Front-end spécial
 		</header>
 
 		<main id="main-content">
+			<Hero />
+			<Presentation />
+			<BentoGrid />
 			<slot />
 		</main>
 
@@ -63,6 +77,10 @@ const { title = "Marine Lenoir", description = "Développeuse Front-end spécial
 		text-decoration: none;
 		clip: auto;
 		height: auto;
+	}
+
+	main {
+		background-color: var(--bg-color);
 	}
 
 	footer {

@@ -59,6 +59,7 @@ const navItems = [
   }
 
   nav {
+    max-height: 6.25rem;
     padding: var(--space-s) var(--space-m);
     background-color: var(--bg-color);
     border-bottom: 1px solid #eee;
@@ -70,19 +71,19 @@ const navItems = [
 
   @media (min-width: 64rem) {
     nav {
-      padding: 1rem 3rem 0 1rem;
+      padding: 1rem 3rem 1rem 1rem;
     }
   }
 
   .logo {
-    width: 6.813rem;
-    height: auto;
-    padding-top: 0.625rem;
+      width: 6.813rem;
+      height: auto;
+      padding-top: 0.625rem;
   }
 
   @media (min-width: 64rem) {
     .logo {
-      width: 8.813rem;
+      width: 7.813rem;
     }
   }
 
@@ -190,6 +191,19 @@ const navItems = [
 
 <script>
 
+  function setMainInert(isInert: boolean) {
+    const main = document.querySelector('main');
+    if (main) {
+      if (isInert) {
+        main.setAttribute('inert', '');
+        main.setAttribute('aria-hidden', 'true');
+      } else {
+        main.removeAttribute('inert');
+        main.removeAttribute('aria-hidden');
+      }
+    }
+  }
+
   function setupNavigation() {
     const btn = document.querySelector('.menu-mobile');
     const menu = document.querySelector('#menu-nav-list');
@@ -202,6 +216,7 @@ const navItems = [
       menu.classList.remove('active');
       overlay.classList.remove('open');
       document.body.classList.remove('no-scroll');
+      setMainInert(false);
     };
 
     btn.addEventListener('click', () => {
@@ -210,6 +225,7 @@ const navItems = [
       menu.classList.toggle('active');
       document.body.classList.toggle('no-scroll');
       overlay.classList.add('open');
+      setMainInert(!isExpanded ? true : false);
     });
 
     const navLinks = menu.querySelectorAll('a');

@@ -1,0 +1,146 @@
+<section class="presentation">
+  <div class="container">
+    <div class="presentation-visual">
+      <div class="logo-wrapper">
+        <img src="/logo-big-format.webp" alt="Logo ML Front-end Developer" />
+      </div>
+    </div>
+
+    <div class="presentation-content">
+      <h2>A PROPOS</h2>
+      <div class="divider"></div>
+      
+      <h3>Mon parcours : de la technique à l'inclusion</h3>
+      
+      <p>
+        Développeuse Front-end passionnée par la création d'interfaces soignées, 
+        j'ai rapidement réalisé que l'élégance d'un site ne vaut rien s'il n'est pas utilisable par tous.
+      </p>
+      
+      <p>
+        Cette prise de conscience m'a poussée à me former de manière intensive et autonome à l'accessibilité numérique. 
+        Aujourd'hui, ma double compétence me permet de concevoir des expériences web qui ne font aucun compromis entre 
+        esthétique moderne et conformité aux standards (WCAG, RGAA).
+      </p>
+
+      <p>
+        Pour moi, l'accessibilité n'est pas une option ou une check-list de fin de projet, 
+        c'est une discipline technique à part entière que j'intègre à chaque étape de mon travail.
+      </p>
+
+      <a href="/a-propos" class="btn-more">
+        EN SAVOIR PLUS <span class="arrow">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+
+    .presentation {
+        padding: 4rem 2rem;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .presentation-visual {
+        display: none;
+    }
+
+    .presentation-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    h2 {
+        margin: 0;
+    }
+
+    h3 {
+        color: var(--primary);
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.4;
+    }
+
+    p {
+        color: var(--text-main)
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        max-width: 45ch;
+        text-align: justify;
+    }
+
+    .btn-more {
+        display: flex;
+        align-items: center;
+        background-color: var(--primary);
+        color: var(--text-button);
+        padding: 0.8rem 2rem;
+        margin-top: 0.5rem;
+        text-decoration: none;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        border-radius: 5px;
+    }
+
+    .arrow {
+        display: flex;
+        align-items: center;
+        transform: translateY(-1px);
+        margin-left: 1rem;
+        font-size: 1.2rem;
+    }
+
+    .btn-more:hover {
+        background-color: var(--separator);;
+    }
+
+    @media (min-width: 64rem) {
+        .presentation {
+            padding: 3rem 0;
+        }
+
+        .container {
+            flex-direction: row;
+            width: 100%;
+            margin: 0 auto;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .presentation-visual {
+            display: block
+        }
+
+        .presentation-visual, 
+        .presentation-content {
+            flex: 1;
+        }
+
+        .logo-wrapper {
+            margin: 0;
+            max-width: none;
+            padding: 4rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 1 / 1;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        .btn-more {
+            margin-top: 1rem;
+        }
+    }
+</style>

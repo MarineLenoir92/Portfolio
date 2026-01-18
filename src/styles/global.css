@@ -3,7 +3,7 @@
   --bg-color: #F9F9F7;
   --text-main: #595E60;
   --text-button: #FFFFFF;
-  --separator: #595E60;
+  --separator: #87938A;
   --list-title-primary:#707070;
   --list-title-secondary: #6C7368; 
   
@@ -65,8 +65,18 @@ h1.light {
 
 h2 {
   font-family: var(--font-main);
-  font-size: 2rem;
+  color: var(--primary);
+  font-size: 1.5rem;
+  letter-spacing: 0.2em;
   font-weight: 400;
+}
+
+.divider {
+    width: 6.25rem;
+    height: 0.188rem;
+    background-color: var(--separator);
+    margin: 0.5rem 0 2rem 0;
+    box-shadow: var(--shadow-soft)
 }
 
 button {

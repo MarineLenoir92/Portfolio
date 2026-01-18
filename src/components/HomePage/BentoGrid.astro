@@ -1,0 +1,228 @@
+---
+import { Image } from 'astro:assets';
+// Importe tes images de projets ici
+---
+
+<section class="projects">
+    <h2>MES PROJETS</h2>
+    <div class="divider"></div>
+    <p class="subtitle">Mes études de cas : Quand performance rime et inclusion.</p>
+
+    <ul class="bento-grid">
+        <li class="card card-wide">
+        <div class="card-content">
+            <h3>Voyage Spatial <br> Éco-conçu</h3>
+            <p>Immersion totale sans framework et 100% accessible</p>
+             <div class="card-image-mobile">
+                <img src="/Space-Agency-Tourism.webp" alt="Aperçu du projet Voyage Spatial Éco-conçu" />
+            </div>
+            <a href="#" class="btn-card">LIRE L'ÉTUDE DE CAS →</a>
+        </div>
+        <div class="card-image-desktop">
+            <img src="/Space-Agency-Tourism.webp" alt="Aperçu du projet Voyage Spatial Éco-conçu" />
+        </div>
+        </li>
+
+        <li class="card card-tall">
+            <h3>Triple Refonte E-commerce</h3>
+            <div class="card-image">
+                <img class="img-printemps" src="/logo-printemps.webp" alt="Logo de la société Printemps" />
+                <img class="img-citadium" src="/logo-citadium.webp" alt="Logo de la société Citadium" />
+                <img class="img-pdt" src="/logo-place-des-tendances.webp" alt="Logo de la société Place des tendances" />
+            </div>
+            <p>Reconstruction from scratch du Front-end des sites du groupe Printemps</p>
+            <a href="#" class="btn-card">LIRE L'ÉTUDE DE CAS →</a>
+        </li>
+
+        <li class="card card-github">
+        <div class="github-content">
+            <h3>Mon GitHub</h3>
+            <img src="/logo-github.webp" alt="Logo Github" />
+            <a href="#" class="link-github">Voir tous mes dépôts →</a>
+        </div>
+        </li>
+
+        <li class="card card-omnilog">
+            <h3>Site Vitrine Omnilog</h3>
+            <img src="/logo-Omnilog.webp" alt="Logo de la société Omnilog" />
+            <p>Allier image de marque et responsabilité numérique</p>
+            <a href="#" class="btn-card">LIRE L'ÉTUDE DE CAS →</a>
+        </li>
+    </ul>
+
+    <a href="https://github.com" class="btn-main">VOIR TOUS MES PROJETS SUR GITHUB →</a>
+</section>
+
+<style>
+
+    .projects {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        background-color: #f8f8f7;
+        text-align: center;
+    }
+
+    .subtitle {
+        color: var(--primary);
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.4;
+        font-weight: 700;
+    }
+
+    .bento-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        list-style: none;
+        padding: 0;
+    }
+
+    h3 {
+        margin-bottom: 1rem;
+    }
+
+    p {
+        margin-bottom: 2rem;
+    }
+
+    a {
+        margin-top: 1rem;
+    }
+
+    .card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+
+    .card-image-mobile {
+        margin-bottom: 2rem;
+        img {
+            max-width: 12.5rem ;
+            height: auto; 
+        } 
+    }
+
+    .card-image-desktop {
+        display: none;
+    }
+
+    .card-github {
+        background-color: #2d4f3b;
+        color: var(--text-button)   
+    }
+
+    .link-github {
+        display: block;
+        color: var(--text-button);
+        font-size: 1rem;
+    }
+
+    .card-image {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1.563rem;
+        margin: 1rem 0 2rem 0;
+    }
+
+    .img-printemps{
+        max-width: 12.5rem;
+        height: auto;
+    }
+
+    .img-citadium {
+        max-width: 11.5rem;
+        height: auto;
+    }
+
+    .img-pdt {
+        max-width: 6rem;
+        height: auto;
+    }
+
+    .card-omnilog {
+        h3 {
+            margin-bottom: 2rem;
+        }
+        img {
+            max-width: 12.5rem ;
+            height: auto;
+            margin: auto;
+        }
+        p {
+            margin-top: 2rem;
+        }
+    }
+
+    .btn-card {
+        background: var(--separator);
+        color: white;
+        padding: 0.8rem 1.2rem;
+        font-size: 0.7rem;
+        text-decoration: none;
+        display: inline-block;
+        width: fit-content;
+        margin: auto;
+    }
+
+    @media (min-width: 64rem) {
+        .bento-grid {
+            grid-template-columns: repeat(3, 1fr)/
+            grid-auto-rows: 200px;
+            max-width: 64rem;
+            margin: 1rem auto;
+        }
+
+        .card {
+            text-align: center;
+        }
+
+        .card-wide {
+            grid-column: span 2;
+            grid-row: span 2;
+            flex-direction: row;
+            text-align: left;
+        }
+
+        .card-image-mobile {
+            display: none;
+        }
+        
+        .card-image-desktop {
+            display: block;
+        }
+
+        .card-tall {
+            grid-column: span 1;
+            grid-row: span 3;
+        }
+
+        .card-github {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .card-small {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+
+        .card-omnilog {
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+
+    }
+    
+</style>
